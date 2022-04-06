@@ -23,16 +23,23 @@ provider "aws" {
 }
 
 
-resource "aws_instance" "app_server" {
-  ami           = "ami-0ff8a91507f77f867"
-  instance_type = var.instance_type
+resource "aws_iam_policy" "policy" {
+  name        = "test_policy"
+  path        = "/"
+  description = "My test policy"
 
-  tags = {
-    Name = "Worklaod"
-  }
-
-  provisioner "local-exec" {
-    command = "echo 'Hello World' > ./text.txt"
-  }
-
+  # Terraform's "jsonencode" function converts a
+  # Terraform expression result to valid JSON syntax.
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "ec2:Describe*",
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+    ]
+  })
 }
