@@ -35,8 +35,4 @@ resource "aws_instance" "app_server" {
     command = "echo 'Hello World' > ./text.txt"
   }
 
-  provisioner "local-exec" {
-    when    = destroy
-    command = "echo 'Hello World' > ./text.txt"
-  }
 }
