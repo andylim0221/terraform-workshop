@@ -35,7 +35,7 @@ module "test_modules" {
 
 
 
-resource "aws_iam_policy" "policy" {
+resource "aws_iam_policy" "second_policy" {
   name        = "test_policy"
   path        = "/"
   description = "My test policy"
