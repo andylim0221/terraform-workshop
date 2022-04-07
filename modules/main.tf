@@ -3,14 +3,14 @@ terraform {
   cloud {
     organization = "example-org-9cf8e7"
     workspaces {
-      name = "terraform-workshop"
+      name = "terraform-test"
     }
   }
 
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~>3.27"
+      version = ">=3.27"
     }
   }
 
