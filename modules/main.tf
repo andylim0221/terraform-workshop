@@ -55,7 +55,7 @@ resource "aws_iam_access_key" "lb" {
 }
 
 resource "aws_iam_user_policy" "lb_ro" {
-  name = var.function_name
+  name = var.policy_name
   user = aws_iam_user.lb.name
 
   policy = <<EOF
@@ -72,23 +72,5 @@ resource "aws_iam_user_policy" "lb_ro" {
   ]
 }
 EOF
-}
-
-module "lambda_function" {
-  source = "terraform-aws-modules/lambda/aws"
-  providers = {
-    aws = aws.secondary_region
-  }
-
-  function_name = "my-lambda1"
-  description   = "My awesome lambda function"
-  handler       = "index.index_handler"
-  runtime       = "python3.8"
-
-  source_path = "../src/lambda-function1.py"
-
-  tags = {
-    Name = "my-lambda1"
-  }
 }
 

@@ -29,8 +29,8 @@ provider "aws" {
 module "test_modules" {
   source = "./modules/"
 
-  name          = "test-lb"
-  function_name = "account"
+  name        = "test-lb"
+  policy_name = "test-policy"
 }
 
 

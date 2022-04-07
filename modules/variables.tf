@@ -2,6 +2,6 @@ variable "name" {
   type = string
 }
 
-variable "function_name" {
+variable "policy_name" {
   type = string
 }
