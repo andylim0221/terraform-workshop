@@ -29,7 +29,7 @@ provider "aws" {
 module "test_modules" {
   source = "./modules/"
 
-  name = "test-lb"
+  name          = "test-lb"
   function_name = "account"
 }
 
