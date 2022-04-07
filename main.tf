@@ -100,7 +100,7 @@ module "lambda_function" {
   handler       = "index.index_handler"
   runtime       = "python3.8"
 
-  source_path = "../src/lambda-function1.py"
+  source_path = "./src/lambda-function1.py"
 
   tags = {
     Name = "my-lambda1"
