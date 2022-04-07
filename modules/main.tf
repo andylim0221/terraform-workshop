@@ -1,16 +1,8 @@
 terraform {
-
-  cloud {
-    organization = "example-org-9cf8e7"
-    workspaces {
-      name = "terraform-test"
-    }
-  }
-
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">=3.27"
+      version = "~>4.8.0"
     }
   }
 
@@ -18,12 +10,12 @@ terraform {
 }
 
 provider "aws" {
-  region  = "us-east-1"
+  region = "us-east-1"
 }
 
 provider "aws" {
   region = "eu-central-1"
-  alias = "secondary_region"
+  alias  = "secondary_region"
 }
 
 
@@ -50,7 +42,7 @@ resource "aws_iam_policy" "policy" {
 }
 
 resource "aws_iam_user" "lb" {
-  name = "loadbalancer"
+  name = var.name
   path = "/system/"
 
   tags = {
@@ -63,7 +55,7 @@ resource "aws_iam_access_key" "lb" {
 }
 
 resource "aws_iam_user_policy" "lb_ro" {
-  name = "test"
+  name = var.function_name
   user = aws_iam_user.lb.name
 
   policy = <<EOF
@@ -86,7 +78,7 @@ module "lambda_function" {
   source = "terraform-aws-modules/lambda/aws"
   providers = {
     aws = aws.secondary_region
-   }
+  }
 
   function_name = "my-lambda1"
   description   = "My awesome lambda function"
