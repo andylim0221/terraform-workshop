@@ -84,7 +84,7 @@ module "lambda_function" {
   }
 }
 
-data "aws_eks_cluster" "name" {
+data "aws_eks_cluster" "sandbox" {
   name = "sandbox-eks-cluster"
 }
 
@@ -98,8 +98,8 @@ data "aws_vpc" "eks_cluster" {
 
 
 resource "aws_eks_cluster" "sandbox" {
-  role_arn = data.aws_iam_role.eks_role
-  name     = data.aws_eks_cluster.name
+  role_arn = data.aws_iam_role.eks_role.arn
+  name     = data.aws_eks_cluster.sandbox.name
   vpc_config {
     subnet_ids = [
       "subnet-06975a27",
