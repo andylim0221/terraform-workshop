@@ -122,4 +122,7 @@ resource "aws_eks_node_group" "sandbox-node-group" {
   }
   subnet_ids    = var.subnet_ids
   node_role_arn = data.aws_iam_role.node_group.arn
+  depends_on = [
+    aws_eks_cluster.sandbox
+  ]
 }
