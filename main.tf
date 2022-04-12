@@ -112,3 +112,23 @@ resource "aws_eks_cluster" "sandbox" {
     ]
   }
 }
+
+data "aws_iam_role" "node_group" {
+  name = "EKSNodeGroupRole"
+}
+
+resource "aws_eks_node_group" "sandbox-node-group" {
+  cluster_name = aws_eks_cluster.sandbox.name
+  scaling_config {
+    desired_size = 2
+    max_size     = 2
+    min_size     = 2
+  }
+  subnet_ids = [
+    "subnet-06975a27",
+    "subnet-4b6aaa14",
+    "subnet-57ff3831",
+    "subnet-8428bfc9",
+  ]
+  node_role_arn = data.aws_iam_role.node_group.arn
+}
