@@ -104,12 +104,8 @@ resource "aws_eks_cluster" "sandbox" {
     security_group_ids = [
       "sg-165adf35",
     ]
-    subnet_ids = [
-      "subnet-06975a27",
-      "subnet-4b6aaa14",
-      "subnet-57ff3831",
-      "subnet-8428bfc9",
-    ]
+    subnet_ids = var.subnet_ids
+
   }
 }
 
@@ -124,11 +120,6 @@ resource "aws_eks_node_group" "sandbox-node-group" {
     max_size     = 2
     min_size     = 2
   }
-  subnet_ids = [
-    "subnet-06975a27",
-    "subnet-4b6aaa14",
-    "subnet-57ff3831",
-    "subnet-8428bfc9",
-  ]
+  subnet_ids    = var.subnet_ids
   node_role_arn = data.aws_iam_role.node_group.arn
 }
