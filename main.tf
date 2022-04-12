@@ -83,3 +83,32 @@ module "lambda_function" {
     Name = "my-lambda1"
   }
 }
+
+data "aws_eks_cluster" "sandbox" {
+  name = "sandbox-eks-cluster"
+}
+
+data "aws_iam_role" "eks" {
+  name = "eks"
+}
+
+resource "aws_eks_cluster" "sandbox" {
+  name     = data.aws_eks_cluster.sandbox.name
+  role_arn = data.aws_iam_role.eks.arn
+  vpc_config {
+    endpoint_private_access = false
+    endpoint_public_access  = true
+    public_access_cidrs = [
+      "0.0.0.0/0",
+    ]
+    security_group_ids = [
+      "sg-165adf35",
+    ]
+    subnet_ids = [
+      "subnet-06975a27",
+      "subnet-4b6aaa14",
+      "subnet-57ff3831",
+      "subnet-8428bfc9",
+    ]
+  }
+}
