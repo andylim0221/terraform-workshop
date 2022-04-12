@@ -84,3 +84,8 @@ module "lambda_function" {
   }
 }
 
+
+
+resource "aws_eks_cluster" "sandbox" {
+
+}
