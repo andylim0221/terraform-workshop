@@ -84,45 +84,45 @@ module "lambda_function" {
   }
 }
 
-data "aws_eks_cluster" "sandbox" {
-  name = "sandbox-eks-cluster"
-}
+# data "aws_eks_cluster" "sandbox" {
+#   name = "sandbox-eks-cluster"
+# }
 
-data "aws_iam_role" "eks" {
-  name = "eks"
-}
+# data "aws_iam_role" "eks" {
+#   name = "eks"
+# }
 
-resource "aws_eks_cluster" "sandbox" {
-  name     = data.aws_eks_cluster.sandbox.name
-  role_arn = data.aws_iam_role.eks.arn
-  vpc_config {
-    endpoint_private_access = false
-    endpoint_public_access  = true
-    public_access_cidrs = [
-      "0.0.0.0/0",
-    ]
-    security_group_ids = [
-      "sg-165adf35",
-    ]
-    subnet_ids = var.subnet_ids
+# resource "aws_eks_cluster" "sandbox" {
+#   name     = data.aws_eks_cluster.sandbox.name
+#   role_arn = data.aws_iam_role.eks.arn
+#   vpc_config {
+#     endpoint_private_access = false
+#     endpoint_public_access  = true
+#     public_access_cidrs = [
+#       "0.0.0.0/0",
+#     ]
+#     security_group_ids = [
+#       "sg-165adf35",
+#     ]
+#     subnet_ids = var.subnet_ids
 
-  }
-}
+#   }
+# }
 
-data "aws_iam_role" "node_group" {
-  name = "EKSNodeGroupRole"
-}
+# data "aws_iam_role" "node_group" {
+#   name = "EKSNodeGroupRole"
+# }
 
-resource "aws_eks_node_group" "sandbox-node-group" {
-  cluster_name = aws_eks_cluster.sandbox.name
-  scaling_config {
-    desired_size = 2
-    max_size     = 2
-    min_size     = 2
-  }
-  subnet_ids    = var.subnet_ids
-  node_role_arn = data.aws_iam_role.node_group.arn
-  depends_on = [
-    aws_eks_cluster.sandbox
-  ]
-}
+# resource "aws_eks_node_group" "sandbox-node-group" {
+#   cluster_name = aws_eks_cluster.sandbox.name
+#   scaling_config {
+#     desired_size = 2
+#     max_size     = 2
+#     min_size     = 2
+#   }
+#   subnet_ids    = var.subnet_ids
+#   node_role_arn = data.aws_iam_role.node_group.arn
+#   depends_on = [
+#     aws_eks_cluster.sandbox
+#   ]
+# }
