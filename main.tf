@@ -84,3 +84,28 @@ module "lambda_function" {
   }
 }
 
+data "aws_eks_cluster" "sandbox" {
+  name = "sandbox-eks-cluster"
+}
+
+data "aws_iam_role" "eks_role" {
+  name = "eks"
+}
+
+data "aws_vpc" "eks_cluster" {
+  id = "vpc-0427347e"
+}
+
+
+resource "aws_eks_cluster" "sandbox" {
+  role_arn = data.aws_iam_role.eks_role.arn
+  name     = data.aws_eks_cluster.sandbox.name
+  vpc_config {
+    subnet_ids = [
+      "subnet-06975a27",
+      "subnet-4b6aaa14",
+      "subnet-57ff3831",
+      "subnet-8428bfc9",
+    ]
+  }
+}
