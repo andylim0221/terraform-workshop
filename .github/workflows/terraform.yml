@@ -17,9 +17,9 @@ jobs:
 
       - name: Go to andy folder
         run: |
-          pwd
           cd 102451347770-andy
-
+          pwd
+          
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
@@ -84,8 +84,8 @@ jobs:
       
       - name: Go to andy folder
         run: |
-          pwd
           cd ./375002761141-sandbox-chin.huat.lim
+          pwd
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
