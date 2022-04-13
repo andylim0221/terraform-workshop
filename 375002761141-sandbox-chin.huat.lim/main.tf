@@ -1,6 +1,6 @@
 terraform {
 
- cloud {
+  cloud {
     organization = "example-org-9cf8e7"
 
     workspaces {
@@ -17,7 +17,7 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region     = "us-east-1"
+  region = "us-east-1"
 }
 
 module "dynatrace_iam_role" {
