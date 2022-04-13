@@ -1,27 +1,28 @@
-name: "Terraform"
+name: "Terraform Sandbox"
 
 defaults:
   run:
-    working-directory: './102451347770-andy/'
+    working-directory: './375002761141-sandbox-chin.huat.lim'
 
 on:
   push:
     branches:
       - main
     paths:
-      - '102451347770-andy/**'
+      - '375002761141-sandbox-chin.huat.lim/**'
     paths-ignore:
       - '.github/'
   pull_request:
     paths:
-      - '102451347770-andy/**'
+      - '375002761141-sandbox-chin.huat.lim/**'
     paths-ignore:
       - '.github/'
 
 jobs:
-  andy:
-    name: "Terraform (andy)"
+  chin-huat-sandbox:
+    name: "Terraform (sandbox-chin.huat.lim)"
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -46,8 +47,11 @@ jobs:
 
       - name: Terraform Plan
         id: plan
+        env:
+          AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+          AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
         if: github.event_name == 'pull_request'
-        run: terraform plan -no-color
+        run: terraform plan -no-color -var "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY"
         continue-on-error: true
 
       - uses: actions/github-script@0.9.0
@@ -79,4 +83,4 @@ jobs:
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -var "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY"
