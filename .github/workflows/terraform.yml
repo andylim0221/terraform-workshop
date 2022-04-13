@@ -4,8 +4,11 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - '.github/'
   pull_request:
-    
+    paths-ignore:
+      - '.github/'
 
 jobs:
   andy:
@@ -19,7 +22,7 @@ jobs:
         run: |
           cd 102451347770-andy
           pwd
-          
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
@@ -95,7 +98,9 @@ jobs:
 
       - name: Terraform Format
         id: fmt
-        run: terraform fmt -check
+        run: |
+          pwd
+          terraform fmt -check
 
       - name: Terraform Init
         id: init
