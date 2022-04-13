@@ -10,13 +10,11 @@ on:
       - main
     paths:
       - '102451347770-andy/**'
-    paths-ignore:
-      - '.github/'
+      - '!.github/'
   pull_request:
     paths:
       - '102451347770-andy/**'
-    paths-ignore:
-      - '.github/'
+      - '!.github/'
 
 jobs:
   andy:
