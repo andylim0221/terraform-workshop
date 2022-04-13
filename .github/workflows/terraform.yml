@@ -4,15 +4,17 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    
 
 jobs:
   andy:
     name: "Terraform (andy)"
     runs-on: ubuntu-latest
-    working-directory: ./andy
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        working-directory: ./andy
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
@@ -72,10 +74,10 @@ jobs:
   chin-huat-sandbox:
     name: "Terraform (sandbox-chin.huat.lim)"
     runs-on: ubuntu-latest
-    working-directory: ./375002761141-sandbox-chin.huat.lim
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        working-directory: ./375002761141-sandbox-chin.huat.lim
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
