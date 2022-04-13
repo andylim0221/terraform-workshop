@@ -10,13 +10,11 @@ on:
       - main
     paths:
       - '375002761141-sandbox-chin.huat.lim/**'
-    paths-ignore:
-      - '.github/'
+      - '!.github/'
   pull_request:
     paths:
       - '375002761141-sandbox-chin.huat.lim/**'
-    paths-ignore:
-      - '.github/'
+      - '!.github/'
 
 jobs:
   chin-huat-sandbox:
