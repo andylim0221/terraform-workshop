@@ -21,6 +21,6 @@ module "dynatrace_iam_role" {
 
 resource "null_resource" "example" {
   provisioner "local-exec" {
-      command = "echo Hello World"
+    command = "echo Hello World"
   }
 }
