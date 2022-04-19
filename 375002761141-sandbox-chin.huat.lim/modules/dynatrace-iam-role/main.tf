@@ -14,8 +14,8 @@ resource "aws_iam_role" "dynatrace" {
           Effect = "Allow"
           Principal = {
             AWS = [
-              "arn:aws:iam::375002761141:role/Dynatrace_ActiveGate_role",
               "arn:aws:iam::509560245411:root",
+              "arn:aws:iam::375002761141:role/Dynatrace_ActiveGate_role"
             ]
           }
         },
