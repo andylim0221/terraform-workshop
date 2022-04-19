@@ -15,4 +15,3 @@ variable "subnet_ids" {
   ]
 }
 
-variable "example" {}
