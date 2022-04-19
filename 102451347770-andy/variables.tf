@@ -14,3 +14,4 @@ variable "subnet_ids" {
     "subnet-8428bfc9",
   ]
 }
+
