@@ -25,6 +25,19 @@ module "dynatrace_iam_role" {
 
 }
 
+data "aws_iam_instance_profile" "dynatrace" {
+  name = "Dynatrace_ActiveGate_role"
+}
+
+resource "aws_instance" "dynatrace_gateway" {
+  instance_type        = "t2.medium"
+  ami                  = "ami-087c17d1fe0178315"
+  iam_instance_profile = data.aws_iam_instance_profile.dynatrace.name
+  tags = {
+    "Name" = "AL2_Dynatrace_ActiveGate"
+  }
+}
+
 resource "null_resource" "example" {
   provisioner "local-exec" {
     command = "echo Hello World"
