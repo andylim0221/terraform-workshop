@@ -4,7 +4,7 @@ terraform {
     organization = "example-org-9cf8e7"
 
     workspaces {
-      name = "terraform-workshop-2"
+      name = "terraform-workshop"
     }
   }
   required_providers {
@@ -34,8 +34,9 @@ resource "aws_instance" "dynatrace_gateway" {
   ami                  = "ami-087c17d1fe0178315"
   iam_instance_profile = data.aws_iam_instance_profile.dynatrace.name
   tags = {
-    "Name"    = "AL2_Dynatrace_ActiveGate"
-    "Purpose" = "Test"
+    "Name"        = "AL2_Dynatrace_ActiveGate"
+    "Purpose"     = "Test"
+    "Environment" = "Prod"
   }
 }
 
