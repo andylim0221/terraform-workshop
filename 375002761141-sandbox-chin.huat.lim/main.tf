@@ -4,7 +4,7 @@ terraform {
     organization = "example-org-9cf8e7"
 
     workspaces {
-      name = "terraform-workshop"
+      name = "AWS-375002761141"
     }
   }
   required_providers {
