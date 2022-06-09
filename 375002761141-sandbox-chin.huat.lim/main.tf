@@ -51,3 +51,10 @@ resource "null_resource" "example-2" {
     command = "echo Hello Terraform"
   }
 }
+
+
+resource "null_resource" "example-3" {
+  provisioner "local-exec" {
+    command = "echo Hello Terraform-2"
+  }
+}
